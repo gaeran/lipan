@@ -1,0 +1,16 @@
+<!--
+<form action="{% url 'portscan:favorite' ScanResults.id %}" method="post">
+    {% csrf_token %}
+    {% for ScanResults in all_ScanResults %}
+    <input type="radio" id="ScanResults{{ forloop.counter }}" name="scanresult" value="{{ ScanResults.id }}" />
+    <label for="ScanResults{{ forloop.counter }}">
+        {{ ScanResults.name }}
+        {% if ScanResults.is_favorite %}
+            <img src="http://i.imgur.com/b9b13Rd.png" alt="star" />
+        {% endif %}
+    </label><br>
+    {% endfor %}
+    <input type="submit" value="Favorite">
+</form>
+"""
+/-->
