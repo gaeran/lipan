@@ -1,0 +1,11 @@
+
+<h3> Previous Scan Results</h3>
+{% if all_ScanResults %}
+        <ul>
+            {% for ScanResults in all_ScanResults %}
+                <li><a href="/portscan/{{ ScanResults.id }}/"> {{ ScanResults.ip}} | {{ ScanResults.name}}</a></li>
+            {% endfor %}
+        </ul>
+{% else %}
+        <h3>no scan results to display.</h3>
+{% endif %}
