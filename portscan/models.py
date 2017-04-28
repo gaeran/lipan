@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 class ScanResults(models.Model):
@@ -6,6 +7,9 @@ class ScanResults(models.Model):
     ip = models.CharField(max_length=70)
     is_favorite = models.BooleanField(default=False)
     #scanDate = models.DateTimeField(auto_now_add=True)
+
+    def get_absolute_url(self):
+        return reverse('portscan:detail', kwargs={'pk': self})
 
     def __str__(self):
         return self.name + ' - ' + self.ip

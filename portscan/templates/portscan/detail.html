@@ -4,8 +4,13 @@
 
 
 <h1> Results</h1>
-<h3>{{ scanlist.name }} - {{ scanlist.ip }}</h3>
 
+<div class="col-sm-8 col-md-9">
+    <ul class="nav nav-pills" style="margin-bottom: 10px;">
+        <li role="presentation" class="active"><a href="{% url 'portscan:detail' ScanResults.id %}">View ALl</a></li>
+    </ul>
+
+</div>
 
 
 <ul>
