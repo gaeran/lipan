@@ -1,0 +1,35 @@
+{% extends 'portscan/base.html' %}
+
+{% block body %}
+
+<h3> Previous Scan Results</h3>
+
+<ul>
+    {% for ScanResults in object_list %}
+        <li><a href="{% url 'portscan:detail' ScanResults.id %}"> {{ ScanResults.ip}} | {{ ScanResults.name}}</a></li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'portscan:scan-create' %}">
+    <button type="button" class="btn btn-default">New Scan</button>
+</a>
+
+
+
+
+
+{% if error_message %}
+    <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
+{% if all_ScanResults %}
+        <ul>
+            {% for ScanResults in object_list %}
+                <li><a href="{% url 'portscan:detail' ScanResults.id %}"> {{ ScanResults.ip}} | {{ ScanResults.name}}</a></li>
+            {% endfor %}
+        </ul>
+{% else %}
+        <h3>no scan results to display.</h3>
+{% endif %}
+
+{% endblock %}

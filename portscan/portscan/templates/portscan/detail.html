@@ -1,0 +1,32 @@
+{% extends 'portscan/base.html' %}
+{% block title %}Lipan - Scan Results Details{% endblock %}
+{% block body %}
+
+
+<h1> Results</h1>
+
+<div class="col-sm-8 col-md-9">
+    <ul class="nav nav-pills" style="margin-bottom: 10px;">
+        <li role="presentation" class="active"><a href="{% url 'portscan:detail' ScanResults.id %}">View ALl</a></li>
+    </ul>
+
+</div>
+
+
+<ul>
+    {% for x in ScanResults.PortResult_set.all %}
+    <li>{{scanlist.PortResult}}</li>
+    {% endfor %}
+</ul>
+
+<ul>
+    <li>test {{ PortResult.portNumber }} </li>
+    {% for a in scanlist.a_set.all %}
+    <li>aaa {{ PortResult.portNumber }} </li>
+    {% endfor %}
+</ul>
+
+
+{{ scanlist.PortResult.portNumber }} | {{ PortResult.state }}  | {{ PortResult.service }}  | {{ PortResult.latency }}  | {{ PortResult.port_type }}
+
+{% endblock %}
