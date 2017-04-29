@@ -2,34 +2,38 @@
 
 {% block body %}
 
-<h3> Previous Scan Results</h3>
-
-<ul>
-    {% for ScanResults in object_list %}
-        <li><a href="{% url 'portscan:detail' ScanResults.id %}"> {{ ScanResults.ip}} | {{ ScanResults.name}}</a></li>
-    {% endfor %}
-</ul>
-
-<a href="{% url 'portscan:scan-create' %}">
-    <button type="button" class="btn btn-default">New Scan</button>
-</a>
+<!-- Main jumbotron for a primary marketing message or call to action -->
+   <div class="page-header">
+     <div class="container">
+       <h2>Port Scanner</h2>
+       <p>Lipan comes pre-packaged with a port scanner module to demonstrate the tool's capability to integrate network security applications within its framework.</p>
+       <p><a class="btn btn-primary btn-sm" href="{% url 'portscan:scan-create' %}" role="button">New Scan &raquo;</a></p>
+     </div>
+   </div>
 
 
+   <div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Previous Scan Results</h2>
+      <ul>
+          {% for ScanResults in object_list %}
+              <li><a href="{% url 'portscan:detail' ScanResults.id %}"> {{ ScanResults.ip}} | {{ ScanResults.name}}</a></li>
+          {% endfor %}
+      </ul>
+
+      <a href="{% url 'portscan:scan-create' %}">
+          <button type="button" class="btn btn-default">New Scan</button>
+      </a>
+    </div>
+    <div class="col-md-4">
+      <h2>Heading</h2>
+      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    </div>
+  </div>
 
 
-
-{% if error_message %}
-    <p><strong>{{ error_message }}</strong></p>
-{% endif %}
-
-{% if all_ScanResults %}
-        <ul>
-            {% for ScanResults in object_list %}
-                <li><a href="{% url 'portscan:detail' ScanResults.id %}"> {{ ScanResults.ip}} | {{ ScanResults.name}}</a></li>
-            {% endfor %}
-        </ul>
-{% else %}
-        <h3>no scan results to display.</h3>
-{% endif %}
 
 {% endblock %}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Lipan</title>
+
+        <!-- load bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <!-- load google fonts api-->
+        <link href="https://fonts.googleapis.com/css?family=Baloo|Titillium+Web" rel="stylesheet">
+        <!-- load google jquery api -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- local styles -->
+        <link rel="stylesheet" type="text/css" href="{% static 'portscan/style.css' %}">
+    </head>
+    <body>
+        {% load staticfiles %}
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <!-- Header -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'portscan:index' %}">Lipan</a>
+                </div>
+
+                <!-- Menu Items -->
+                <div class="collapse navbar-collapse" id="topNavBar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="{% url 'portscan:index' %}">
+                            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;Port Scan
+                        </a></li>
+                        <li class=""><a href="#">
+                            <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>&nbsp;Add your app!
+                        </a></li>
+                    </ul>
+
+                    <form class="navbar-form navbar-left" role="search" action="#" method="get">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="q" value="">
+                        </div>
+                        <button type="submit" class="btn btn-default">Search</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class=""><a href="#">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Profile
+                        </a></li>
+                        <li class=""><a href="#">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
+                        </a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block body %}
+        {% endblock %}
+
+
+    </body>
+</html>
