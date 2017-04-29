@@ -50,9 +50,5 @@ def register(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                scanlist = ScanResults.objects.filter(user=request.user)
-                return render(request, 'portscan/index.html', {'scanlist': scanlist})
-    context = {
-        "form": form,
-    }
-    return render(request, 'portscan/register.html', context)
+                return redirect('portscan:index')
+    return render(request, self.template_name, {'form': form})

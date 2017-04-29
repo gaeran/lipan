@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Permission, User
 from django.db import models
 from django.core.urlresolvers import reverse
 from datetime import datetime
@@ -10,6 +11,7 @@ class ScanResults(models.Model):
     firstport = models.CharField(max_length=5, default="80")
     lastport = models.CharField(max_length=5, default="80")
     date = models.DateTimeField(default=datetime.now())
+    user = models.ForeignKey(User, default=1)
 
     def get_absolute_url(self):
         return reverse('portscan:detail', kwargs={'pk': self})

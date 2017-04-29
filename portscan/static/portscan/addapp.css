@@ -1,0 +1,7 @@
+.jumbotron{
+    color: #000;
+}
+
+.container marketing{
+    background-image: rgb(143, 143, 143) url('../img/this_is_top.png') repeat center center;
+}
