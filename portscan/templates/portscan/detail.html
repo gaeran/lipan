@@ -1,32 +1,69 @@
 {% extends 'portscan/base.html' %}
-{% block title %}Lipan - Scan Results Details{% endblock %}
+{% block title %}{{scan}}{% endblock %}
 {% block body %}
 
+<div class="container-fluid songs-container">
 
-<h1> Results</h1>
+    <div class="row">
 
-<div class="col-sm-8 col-md-9">
-    <ul class="nav nav-pills" style="margin-bottom: 10px;">
-        <li role="presentation" class="active"><a href="{% url 'portscan:detail' ScanResults.id %}">View ALl</a></li>
-    </ul>
+        <!-- Left Album Info -->
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'portscan:detail' scan.id %}">
+                        <h1>{{ scan.ip}}</h1>
+                    </a>
+                    <h2>{{ scan.name }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Song Info -->
+        <div class="col-sm-8 col-md-9">
+
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <li role="presentation" class="active"><a href="{% url 'portscan:detail' scan.id %}">View All</a></li>
+
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <h3>Scan Results by Port</h3>
+
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Port Number</th>
+                            <th>State</th>
+                            <th>Service</th>
+                            <th>Latency</th>
+                            <th>Port Type</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for PortResult in scan.PortResult_set.all %}
+                            <tr>
+                                <td>{{ scan.PortResult.portNumber }}</td>
+                                <td>{{ PortResult.state }}</td>
+                                <td>{{ PortResult.service }}</td>
+                                <td>{{ PortResult.latency }}</td>
+                                <td>{{ PortResult.port_type }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
-
-
-<ul>
-    {% for x in ScanResults.PortResult_set.all %}
-    <li>{{scanlist.PortResult}}</li>
-    {% endfor %}
-</ul>
-
-<ul>
-    <li>test {{ PortResult.portNumber }} </li>
-    {% for a in scanlist.a_set.all %}
-    <li>aaa {{ PortResult.portNumber }} </li>
-    {% endfor %}
-</ul>
-
-
-{{ scanlist.PortResult.portNumber }} | {{ PortResult.state }}  | {{ PortResult.service }}  | {{ PortResult.latency }}  | {{ PortResult.port_type }}
 
 {% endblock %}

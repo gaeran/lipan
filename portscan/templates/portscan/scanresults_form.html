@@ -3,23 +3,34 @@
 {% block scanresults_active%}active{% endblock %}
 
 {% block body %}
+
+
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12 col-md-7">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {% include 'portscan/form-template.html'%}
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="row">
+ <div class="col-md-6">
+
+   <div class="row">
+       <div class="col-sm-12 col-md-12">
+           <div class="panel panel-default">
+               <div class="panel-body">
+                   <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                       {% csrf_token %}
+                       {% include 'portscan/form-template.html'%}
+                       <div class="form-group">
+                           <div class="col-sm-offset-2 col-sm-10">
+                               <button type="submit" class="btn btn-success">Submit</button>
+                           </div>
+                       </div>
+                   </form>
+               </div>
+           </div>
+       </div>
+   </div>
+
+ </div>
+ <div class="col-md-4">
+   <h2>Create a New Port Scan Request</h2>
+   <p>Use this form to submit a request for a port scan on a given IP address and port. Results will be saved to the application's database for follow-on analytics and review.</p>
+ </div>
 </div>
 {% endblock %}
