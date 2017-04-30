@@ -1,6 +1,7 @@
 #from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from portscan.models import ScanResults, PortResult
+from portscan.portscanner import scan_range
 from portscan.forms import UserForm
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -11,7 +12,6 @@ from django.views.generic import View
 from django.contrib.auth import logout
 from django.http import JsonResponse
 from django.db.models import Q
-
 
 class IndexView(generic.ListView):
     template_name = 'portscan/index.html'
@@ -37,6 +37,10 @@ class ResultsView(generic.DetailView):
 class ScanResultsCreate(CreateView):
     model = ScanResults
     fields = ['name', 'ip','firstport', 'lastport']
+
+    def form_valid(self, form):
+        print(scan_range(form.instance.ip, int(form.instance.firstport), int(form.instance.lastport)))
+        return super(ScanResultsCreate, self).form_valid(form)
 
 def register(request):
     form = UserForm(request.POST or None)
