@@ -19,16 +19,33 @@
   <!-- Example row of columns -->
   <div class="row">
     <div class="col-md-8">
-      <h2>Previous Scan Results</h2>
-      <ul>
-          {% for ScanResults in object_list %}
-              <li><a href="{% url 'portscan:detail' ScanResults.id %}"> {{ ScanResults.ip}} | {{ ScanResults.name}}</a></li>
-          {% endfor %}
-      </ul>
+      <h2>Scan Results</h2><a href="{% url 'portscan:scan-create' %}"><button type="button" class="btn btn-default">New Scan</button></a>
+      <table class="table">
+        <thead>
+        <tr>
+            <th>Scan Name</th>
+            <th>IP Address</th>
+            <th>First Port</th>
+            <th>Last Port</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ScanResults in object_list %}
+            <tr>
+                <td><a href="{% url 'portscan:detail' ScanResults.id %}"> {{ ScanResults.name}}</td>
+                <td>{{ ScanResults.ip }}</td>
+                <td>{{ ScanResults.firstport }}</td>
+                <td>{{ ScanResults.lastport }}</td>
+                <td>{{ ScanResults.date }}</td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+            </tr>
+        {% endfor %}
 
-      <a href="{% url 'portscan:scan-create' %}">
-          <button type="button" class="btn btn-default">New Scan</button>
-      </a>
+        </tbody>
+    </table>
+
     </div>
     <div class="col-md-4">
       <h2>Heading</h2>

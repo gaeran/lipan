@@ -14,6 +14,14 @@
                         <h1>{{ scan.ip}}</h1>
                     </a>
                     <h2>{{ scan.name }}</h2>
+                    <hr>
+                    <p>User: {{ scan.user }}</p>
+                    <p>Date: {{ scan.date }}</p>
+                    <p>First Port: {{ scan.firstport }}</p>
+                    <p>Last Port: {{ scan.lastport }}</p>
+                    <hr>
+                    <button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button>
                 </div>
             </div>
         </div>
@@ -36,36 +44,28 @@
                     {% endif %}
 
                     <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Port Number</th>
-                            <th>State</th>
-                            <th>Service</th>
-                            <th>Latency</th>
-                            <th>Port Type</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for portresult in scan.portresult_set.all %}
-                            <tr>
-                                <td>{{ portresult.portNumber }}</td>
-                                <td>{{ portresult.state }}</td>
-                                <td>{{ portresult.service }}</td>
-                                <td>{{ portresult.latency }}</td>
-                                <td>{{ portresult.port_type }}</td>
-                            </tr>
-                        {% endfor %}
-                        {% for name, value in PortResult.get_fields %}
-                            <tr>
-                                <td>{{ scan.portNumber }}</td>
-                                <td>{{ PortResult.state }}</td>
-                                <td>{{ PortResult.service }}</td>
-                                <td>{{ PortResult.latency }}</td>
-                                <td>{{ PortResult.port_type }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                      <thead>
+                      <tr>
+                          <th>Port Number</th>
+                          <th>State</th>
+                          <th>Service</th>
+                          <th>Latency</th>
+                          <th>Port Type</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {% for portresult in scan.portresult_set.all %}
+                          <tr>
+                              <td>{{ portresult.portNumber }}</td>
+                              <td>{{ portresult.state }}</td>
+                              <td>{{ portresult.service }}</td>
+                              <td>{{ portresult.latency }}</td>
+                              <td>{{ portresult.port_type }}</td>
+                          </tr>
+                      {% endfor %}
+                      
+                      </tbody>
+                  </table>
                 </div>
             </div>
 
