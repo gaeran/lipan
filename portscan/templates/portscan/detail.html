@@ -46,13 +46,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for id in scan.PortResult_set.all %}
+                        {% for portresult in scan.portresult_set.all %}
                             <tr>
-                                <td>{{ scan.portNumber }}</td>
-                                <td>{{ PortResult.state }}</td>
-                                <td>{{ PortResult.service }}</td>
-                                <td>{{ PortResult.latency }}</td>
-                                <td>{{ PortResult.port_type }}</td>
+                                <td>{{ portresult.portNumber }}</td>
+                                <td>{{ portresult.state }}</td>
+                                <td>{{ portresult.service }}</td>
+                                <td>{{ portresult.latency }}</td>
+                                <td>{{ portresult.port_type }}</td>
                             </tr>
                         {% endfor %}
                         {% for name, value in PortResult.get_fields %}
