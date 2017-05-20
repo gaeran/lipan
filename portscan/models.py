@@ -14,7 +14,7 @@ class ScanResults(models.Model):
     user = models.ForeignKey(User, default=1)
 
     def get_absolute_url(self):
-        return reverse('portscan:detail', kwargs={'pk': self})
+        return reverse('portscan:detail', args=(self.id,))
 
     def __str__(self):
         return self.name + ' - ' + self.ip

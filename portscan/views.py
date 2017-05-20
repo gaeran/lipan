@@ -39,6 +39,24 @@ class ScanResultsCreate(CreateView):
     model = ScanResults
     fields = ['name', 'ip','firstport', 'lastport']
 
+    def form_valid(self, form):
+        response = super(ScanResultsCreate, self).form_valid(form)
+        scan_results = scan_range(form.instance.ip, int(form.instance.firstport), int(form.instance.lastport))
+        for result in scan_results:
+            print("Port:" + str(result[0]))
+            print("State:" + str(result[1]))
+            PortResult.objects.create(
+              portNumber=result[0],
+              state=result[1],
+              assignedScanResult=self.object,
+            )
+        return response
+
+
+    #def form_valid(self, form):
+        #print(scan_range(form.instance.ip, int(form.instance.firstport), int(form.instance.lastport)))
+        #return super(ScanResultsCreate, self).form_valid(form)
+
 class ScanResultsUpdate(UpdateView):
     model = ScanResults
     fields = ['name', 'ip','firstport', 'lastport']
@@ -47,9 +65,7 @@ class ScanResultsDelete(DeleteView):
     model = ScanResults
     success_url = reverse_lazy('portscan:index')
 
-    def form_valid(self, form):
-        print(scan_range(form.instance.ip, int(form.instance.firstport), int(form.instance.lastport)))
-        return super(ScanResultsCreate, self).form_valid(form)
+
 
 def register(request):
     form = UserForm(request.POST or None)

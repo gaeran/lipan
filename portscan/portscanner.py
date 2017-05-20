@@ -24,6 +24,7 @@ def scan_range(addr, port1, port2):
     print("Please wait, scanning remote host", addr)
     print("-" * 60)
 
-    return [(p, result)
-            for p in range(port1, port2)
-            for result in filter(lambda x: x, [scan_port(addr, p)])]
+    response = []
+    for p in range(port1, port2):
+        response.append((p, scan_port(addr,p)))
+    return response
