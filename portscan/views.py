@@ -5,6 +5,7 @@ from portscan.portscanner import scan_range
 from portscan.forms import UserForm
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 #from django.template import loader
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
@@ -37,6 +38,14 @@ class ResultsView(generic.DetailView):
 class ScanResultsCreate(CreateView):
     model = ScanResults
     fields = ['name', 'ip','firstport', 'lastport']
+
+class ScanResultsUpdate(UpdateView):
+    model = ScanResults
+    fields = ['name', 'ip','firstport', 'lastport']
+
+class ScanResultsDelete(DeleteView):
+    model = ScanResults
+    success_url = reverse_lazy('portscan:index')
 
     def form_valid(self, form):
         print(scan_range(form.instance.ip, int(form.instance.firstport), int(form.instance.lastport)))
